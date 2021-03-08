@@ -42,14 +42,14 @@ function updateStatus(word) {
 
 function updateStatusFailed(word) {
   statusSection.innerText =
-    word + " failed to be added to list. Maybe be a duplicate";
+    word + " failed to be added to list. May be a duplicate.";
   setTimeout(() => {
     statusSection.innerText = "";
   }, 500);
 }
 
 function wordCantBeBlank() {
-  statusSection.innerText = "Word cannot be blank";
+  statusSection.innerText = "Word cannot be blank.";
   setTimeout(() => {
     statusSection.innerText = "";
   }, 500);
