@@ -33,9 +33,12 @@
 
             if (!words.includes(newWord)) {
               words.push(newWord);
+              const wordsListLengthAfterWordAdded = words.length;
               wordDocument
                 .update({ Words: words })
-                .then(() => displayWordAdded(newWord))
+                .then(() =>
+                  displayWordAdded(newWord, wordsListLengthAfterWordAdded)
+                )
                 .finally(() => {
                   wordInput.value = "";
                   submittingInProgress = false;
@@ -59,11 +62,11 @@
   }
 
   let statusDisplayTimeout = null;
-  function displayWordAdded(word) {
+  function displayWordAdded(word, wordsListLength) {
     if (statusDisplayTimeout !== null) {
       clearTimeout(statusDisplayTimeout);
     }
-    statusSection.innerText = word + " added to list.";
+    statusSection.innerText = `${word} added to list. There are now ${wordsListLength} words in the list.`;
     statusDisplayTimeout = setTimeout(() => {
       statusSection.innerText = "";
     }, 500);
